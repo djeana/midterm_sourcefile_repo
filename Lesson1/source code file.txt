@@ -1,0 +1,44 @@
+// This automatically creates a list of 5 scores: 95, 85, 76, 60, and 90
+const scores = Array.of(95, 85, 76, 60, 90);
+
+console.log("--- Student Scores Analysis ---");
+
+let totalScore = 0;
+let highestScore = scores[0];
+let lowestScore = scores[0];
+let passedCount = 0;
+let failedCount = 0;
+
+scores.forEach((score, index) => {
+    let interpretation = "";
+    let status = "Passed";
+
+    if (score >= 90 && score <= 100) {
+        interpretation = "Excellent";
+    } else if (score >= 80 && score <= 89) {
+        interpretation = "Very Good";
+    } else if (score >= 75 && score <= 79) {
+        interpretation = "Good";
+    } else {
+        interpretation = "Failed";
+        status = "Failed";
+    }
+
+    console.log(`Student ${index + 1}: Score = ${score} | Status = ${status} (${interpretation})`);
+
+    totalScore += score;
+    if (score > highestScore) highestScore = score;
+    if (score < lowestScore) lowestScore = score;
+    if (status === "Passed") passedCount++;
+    else failedCount++;
+});
+
+const averageScore = totalScore / scores.length;
+
+console.log("\n--- Final Summary Calculations ---");
+console.log(`Total Score: ${totalScore}`);
+console.log(`Average Score: ${averageScore.toFixed(2)}`);
+console.log(`Highest Score: ${highestScore}`);
+console.log(`Lowest Score: ${lowestScore}`);
+console.log(`Number of Students who Passed: ${passedCount}`);
+console.log(`Number of Students who Failed: ${failedCount}`);
